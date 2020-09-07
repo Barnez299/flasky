@@ -1,2 +1,2 @@
 # flasky
-Flask Location based app
+Flask Customer Feedback App
