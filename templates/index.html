@@ -15,8 +15,9 @@
 <body>
 
     <div class="container">
-        <img src="../static/logo.png" alt="Lexus" class="logo">
-        <!-- @todo- message placeholder -->
+        <img src="../static/logo.png" alt="Lexus" class="logo"> {% if message %}
+        <p class="message">{{message | safe}}</p>
+        {%endif%}
 
         <form action="/submit" method="POST">
             <div class="form-group">
