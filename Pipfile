@@ -11,6 +11,7 @@ flask-sqlalchemy = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 psycopg2 = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.8"
