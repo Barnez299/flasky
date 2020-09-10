@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+
+
+
 
 app = Flask(__name__)
 
 #database set up - production vs dev
 
-ENV == 'dev'
+ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456789@localhost/lexus'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://barnaby:123456789@localhost/lexus'
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
@@ -27,7 +31,6 @@ class Feedback(db.Model):
     comments = db.Column(db.Text())
 
 #create constructor for db model
-
     def __init__(self, customer, dealer, rating, comments):
         self.customer = customer
         self.dealer = dealer
