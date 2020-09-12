@@ -1,5 +1,7 @@
+import os
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import psycopg2
 
 
 
@@ -12,7 +14,8 @@ ENV = 'dev'
 
 if ENV == 'dev':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://barnaby:123456789@localhost/lexus'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456789@localhost/lexus'
+    
 else:
     app.debug = False
     app.config['SQLALCHEMY_DATABASE_URI'] = ''
@@ -43,16 +46,20 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    if request.method =='POST':
+    if request.method == 'POST':
         customer = request.form['customer']
         dealer = request.form['dealer']
         rating = request.form['rating']
         comments = request.form['comments']
-        #print(customer,dealer,rating,comments)
-        # customer field validation
+        # print(customer, dealer, rating, comments)
         if customer == '' or dealer == '':
-            return render_template('index.html', message = 'Please enter required information')
-        return render_template('success.html')
+            return render_template('index.html', message='Please enter required fields')
+        if db.session.query(Feedback).filter(Feedback.customer == customer).count() == 0:
+            data = Feedback(customer, dealer, rating, comments)
+            db.session.add(data)
+            db.session.commit()
+            return render_template('success.html')
+        return render_template('index.html', message='You have already submitted feedback')
 
 if __name__ == '__main__':
     app.run()
