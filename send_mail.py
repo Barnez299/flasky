@@ -11,7 +11,7 @@ def send_mail(customer, dealer, rating, comments):
 
 
 
-sender_email = 'email1@example.com'
+    sender_email = 'email1@example.com'
     receiver_email = 'email2@example.com'
     msg = MIMEText(message, 'html')
     msg['Subject'] = 'Lexus Feedback'
