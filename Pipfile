@@ -9,11 +9,11 @@ verify_ssl = true
 flask = "*"
 flask-sqlalchemy = "*"
 gunicorn = "*"
-psycopg2-binary = "*"
-psycopg2 = "*"
 pylint = "*"
 pylint-flask-sqlalchemy = "*"
 pylint-flask = "*"
+psycopg2-binary = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"
