@@ -13,13 +13,13 @@ app = Flask(__name__)
 
 ENV = 'dev'
 
-if ENV == 'dev':
+if ENV == 'prod':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:123456789@localhost/lexus'
     
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://olkyjgmllqzgvk:a1fba278adf5a5b9b354a3d5882133e5e91d30430fdd9a199f6e4be907f9ac7a@ec2-34-192-122-0.compute-1.amazonaws.com:5432/d6pvcj9bv0p2m'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
